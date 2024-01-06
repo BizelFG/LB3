@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Viewer</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    #imageList li {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>LB3</h1>
+
+  <div>
+    <img id="selectedImage" src="./images/1.gif" alt="ERROR">
+  </div>
+
+  <ul id="imageList">
+    <li data-src="./images/1.gif">1 Зображення</li>
+    <li data-src="./images/2.gif">2 Зображення</li>
+    <li data-src="./images/3.png">3 Зображення</li>
+    <li data-src="./images/4.gif">4 Зображення</li>
+    <li data-src="./images/5.gif">5 Зображення</li>
+    <li data-src="./images/6.jpg">6 Зображення</li>
+    <li data-src="./images/7.jpg">7 Зображення</li>
+  </ul>
+
+  <div>
+    <label for="width">Width:</label>
+    <input type="text" id="width" value="300">
+
+    <label for="height">Height:</label>
+    <input type="text" id="height" value="200">
+
+    <label for="border">Border:</label>
+    <input type="text" id="border" value="2">
+
+    <button id="applyChanges">Apply Changes</button>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $('#imageList li').click(function () {
+        var imageSrc = $(this).data('src');
+        $('#selectedImage').attr('src', imageSrc);
+        applyChanges();
+      });
+
+      $('#applyChanges').click(function () {
+        applyChanges();
+      });
+
+      applyChanges();
+
+      function applyChanges() {
+        var width = $('#width').val();
+        var height = $('#height').val();
+        var border = $('#border').val();
+
+        $('#selectedImage').css({
+          'width': width + 'px',
+          'height': height + 'px',
+          'border': border + 'px solid #000',
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
