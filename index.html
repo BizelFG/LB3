@@ -39,14 +39,23 @@
     <label for="border">Border:</label>
     <input type="text" id="border" value="2">
 
+    <label for="imageText">Text:</label>
+    <input type="text" id="imageText" value="1 Зображення">
+
     <button id="applyChanges">Apply Changes</button>
   </div>
 
   <script>
     $(document).ready(function () {
+      var currentImage = $('#imageList li:first-child');
+
       $('#imageList li').click(function () {
-        var imageSrc = $(this).data('src');
+        currentImage = $(this);
+        var imageSrc = currentImage.data('src');
+        var imageText = currentImage.text();
+
         $('#selectedImage').attr('src', imageSrc);
+        $('#imageText').val(imageText);
         applyChanges();
       });
 
@@ -60,12 +69,15 @@
         var width = $('#width').val();
         var height = $('#height').val();
         var border = $('#border').val();
+        var imageText = $('#imageText').val();
 
         $('#selectedImage').css({
           'width': width + 'px',
           'height': height + 'px',
           'border': border + 'px solid #000',
         });
+
+        currentImage.text(imageText);
       }
     });
   </script>
